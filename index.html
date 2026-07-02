@@ -26,21 +26,46 @@
   <h1>VocaFlow</h1>
   <p>Từ vựng của bạn</p>
 
+  <input id="en" placeholder="English">
+  <input id="vi" placeholder="Vietnamese">
+  <button onclick="addWord()">Thêm từ</button>
+
   <div id="list"></div>
 
- <script>
-const words = [
+<script>
+let words = JSON.parse(localStorage.getItem("words")) || [
   {en:"Apple", vi:"quả táo"},
-  {en:"Cat", vi:"con mèo"},
-  {en:"Book", vi:"quyển sách"},
-  {en:"Dog", vi:"con chó"}
+  {en:"Cat", vi:"con mèo"}
 ];
 
 const list = document.getElementById("list");
 
-list.innerHTML = words.map(w =>
-  `<div class="card" onclick="alert('${w.en} - ${w.vi}')">
-    ${w.en} - ${w.vi}
-  </div>`
-).join("");
+function render() {
+  list.innerHTML = words.map((w, i) =>
+    `<div class="card">
+      ${w.en} - ${w.vi}
+      <button onclick="deleteWord(${i})">X</button>
+    </div>`
+  ).join("");
+
+  localStorage.setItem("words", JSON.stringify(words));
+}
+
+function addWord() {
+  const en = document.getElementById("en").value;
+  const vi = document.getElementById("vi").value;
+
+  if(!en || !vi) return;
+
+  words.push({en, vi});
+  render();
+}
+
+function deleteWord(i) {
+  words.splice(i, 1);
+  render();
+}
+
+render();
 </script>
+</body>
