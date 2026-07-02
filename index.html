@@ -28,20 +28,19 @@
 
   <div id="list"></div>
 
-  <script>
-    const words = [
-      "Apple - quả táo",
-      "Cat - con mèo",
-      "Book - quyển sách",
-      "Dog - con chó",
-      "Water - nước"
-    ];
+ <script>
+const words = [
+  {en:"Apple", vi:"quả táo"},
+  {en:"Cat", vi:"con mèo"},
+  {en:"Book", vi:"quyển sách"},
+  {en:"Dog", vi:"con chó"}
+];
 
-    const list = document.getElementById("list");
+const list = document.getElementById("list");
 
-    list.innerHTML = words
-      .map(w => `<div class="card">${w}</div>`)
-      .join("");
-  </script>
-</body>
-</html>
+list.innerHTML = words.map(w =>
+  `<div class="card" onclick="alert('${w.en} - ${w.vi}')">
+    ${w.en} - ${w.vi}
+  </div>`
+).join("");
+</script>
