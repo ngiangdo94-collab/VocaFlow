@@ -1,27 +1,25 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
   <title>VocaFlow</title>
 </head>
 
 <body>
   <h1>VocaFlow</h1>
-  <p>Ứng dụng từ vựng của bạn</p>
+  <p>Từ vựng của bạn</p>
 
-  <div id="app"></div>
+  <div id="list"></div>
 
   <script>
-    const app = document.getElementById("app");
+    const words = [
+      "Apple - quả táo",
+      "Book - quyển sách",
+      "Cat - con mèo"
+    ];
 
-    app.innerHTML = `
-      <h2>Danh sách từ vựng</h2>
-      <ul>
-        <li>Hello - Xin chào</li>
-        <li>Apple - Quả táo</li>
-      </ul>
-    `;
+    document.getElementById("list").innerHTML =
+      words.map(w => `<p>${w}</p>`).join("");
   </script>
 </body>
 </html>
